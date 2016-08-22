@@ -30,7 +30,7 @@ public class StringMessageAndMetadataScheme extends StringScheme implements Mess
     public static final String STRING_SCHEME_OFFSET = "offset";
 
     @Override
-    public List<Object> deserializeMessageWithMetadata(ByteBuffer message, Partition partition, long offset) {
+    public List<Object> deserializeMessageWithMetadata(byte[] message, Partition partition, long offset) {
         String stringMessage = StringScheme.deserializeString(message);
         return new Values(stringMessage, partition.partition, offset);
     }

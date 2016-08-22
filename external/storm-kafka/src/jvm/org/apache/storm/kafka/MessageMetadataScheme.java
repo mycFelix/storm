@@ -23,5 +23,5 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 public interface MessageMetadataScheme extends Scheme {
-    List<Object> deserializeMessageWithMetadata(ByteBuffer message, Partition partition, long offset);
+    List<Object> deserializeMessageWithMetadata(byte[] message, Partition partition, long offset);
 }

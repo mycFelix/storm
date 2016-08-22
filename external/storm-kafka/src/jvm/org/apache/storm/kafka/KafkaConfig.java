@@ -26,7 +26,7 @@ import kafka.api.FetchRequest;
 
 public class KafkaConfig implements Serializable {
     private static final long serialVersionUID = 5276718734571623855L;
-    
+
     public final BrokerHosts hosts;
     public final String topic;
     public final String clientId;

@@ -29,7 +29,7 @@ public class KeyValueSchemeAsMultiScheme extends SchemeAsMultiScheme {
         super(scheme);
     }
 
-    public Iterable<List<Object>> deserializeKeyAndValue(final ByteBuffer key, final ByteBuffer value) {
+    public Iterable<List<Object>> deserializeKeyAndValue(final byte[] key, final byte[] value) {
         List<Object> o = ((KeyValueScheme)scheme).deserializeKeyAndValue(key, value);
         if(o == null) return null;
         else return Arrays.asList(o);

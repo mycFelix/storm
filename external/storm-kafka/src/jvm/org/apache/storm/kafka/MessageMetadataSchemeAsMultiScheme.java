@@ -30,7 +30,7 @@ public class MessageMetadataSchemeAsMultiScheme extends SchemeAsMultiScheme {
         super(scheme);
     }
 
-    public Iterable<List<Object>> deserializeMessageWithMetadata(ByteBuffer message, Partition partition, long offset) {
+    public Iterable<List<Object>> deserializeMessageWithMetadata(byte[] message, Partition partition, long offset) {
         List<Object> o = ((MessageMetadataScheme) scheme).deserializeMessageWithMetadata(message, partition, offset);
         if (o == null) {
             return null;
