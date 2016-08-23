@@ -29,11 +29,8 @@ public class TestStringScheme {
   public void testDeserializeString() {
     String s = "foo";
     byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
-    ByteBuffer direct = ByteBuffer.allocateDirect(bytes.length);
-    direct.put(bytes);
-    direct.flip();
-    String s1 = StringScheme.deserializeString(ByteBuffer.wrap(bytes));
-    String s2 = StringScheme.deserializeString(direct);
+    String s1 = StringScheme.deserializeString(bytes);
+    String s2 = StringScheme.deserializeString(bytes);
     assertEquals(s, s1);
     assertEquals(s, s2);
   }

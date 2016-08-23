@@ -23,5 +23,5 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 public interface KeyValueScheme extends Scheme {
-    List<Object> deserializeKeyAndValue(ByteBuffer key, ByteBuffer value);
+    List<Object> deserializeKeyAndValue(byte[] key, byte[] value);
 }

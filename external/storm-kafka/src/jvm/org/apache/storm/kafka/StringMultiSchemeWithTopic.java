@@ -32,11 +32,11 @@ public class StringMultiSchemeWithTopic
     public static final String TOPIC_KEY = "topic";
 
     @Override
-    public Iterable<List<Object>> deserialize(ByteBuffer bytes) {
+    public Iterable<List<Object>> deserialize(byte[] bytes) {
         throw new UnsupportedOperationException();
     }
 
-    public Iterable<List<Object>> deserializeWithTopic(String topic, ByteBuffer bytes) {
+    public Iterable<List<Object>> deserializeWithTopic(String topic, byte[] bytes) {
         List<Object> items = new Values(StringScheme.deserializeString(bytes), topic);
         return Collections.singletonList(items);
     }

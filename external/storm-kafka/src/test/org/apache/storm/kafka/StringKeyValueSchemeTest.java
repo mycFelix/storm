@@ -56,7 +56,7 @@ public class StringKeyValueSchemeTest {
                 scheme.deserializeKeyAndValue(wrapString("key"), wrapString("test")));
     }
 
-    private static ByteBuffer wrapString(String s) {
-        return ByteBuffer.wrap(s.getBytes(Charset.defaultCharset()));
+    private static byte[] wrapString(String s) {
+        return s.getBytes(Charset.defaultCharset());
     }
 }

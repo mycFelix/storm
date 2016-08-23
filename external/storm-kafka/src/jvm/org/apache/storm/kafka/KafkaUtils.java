@@ -19,6 +19,7 @@ package org.apache.storm.kafka;
 
 import com.google.common.base.Preconditions;
 
+import org.apache.kafka.common.utils.Utils;
 import org.apache.storm.kafka.trident.GlobalPartitionInformation;
 import org.apache.storm.kafka.trident.IBrokerReader;
 import org.apache.storm.kafka.trident.StaticBrokerReader;
@@ -229,14 +230,17 @@ public class KafkaUtils {
         if (payload == null) {
             return null;
         }
+
+        byte[] payloadBytes = Utils.toArray(payload);
         ByteBuffer key = msg.key();
         if (key != null && kafkaConfig.scheme instanceof KeyValueSchemeAsMultiScheme) {
-            tups = ((KeyValueSchemeAsMultiScheme) kafkaConfig.scheme).deserializeKeyAndValue(key, payload);
+            byte[] keyBytes = Utils.toArray(key);
+            tups = ((KeyValueSchemeAsMultiScheme) kafkaConfig.scheme).deserializeKeyAndValue(keyBytes, payloadBytes);
         } else {
             if (kafkaConfig.scheme instanceof StringMultiSchemeWithTopic) {
-                tups = ((StringMultiSchemeWithTopic)kafkaConfig.scheme).deserializeWithTopic(topic, payload);
+                tups = ((StringMultiSchemeWithTopic)kafkaConfig.scheme).deserializeWithTopic(topic, payloadBytes);
             } else {
-                tups = kafkaConfig.scheme.deserialize(payload);
+                tups = kafkaConfig.scheme.deserialize(payloadBytes);
             }
         }
         return tups;
@@ -247,7 +251,7 @@ public class KafkaUtils {
         if (payload == null) {
             return null;
         }
-        return scheme.deserializeMessageWithMetadata(payload, partition, offset);
+        return scheme.deserializeMessageWithMetadata(Utils.toArray(payload), partition, offset);
     }
 
 

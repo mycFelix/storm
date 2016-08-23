@@ -26,7 +26,7 @@ import java.util.List;
 public class StringKeyValueScheme extends StringScheme implements KeyValueScheme {
 
     @Override
-    public List<Object> deserializeKeyAndValue(ByteBuffer key, ByteBuffer value) {
+    public List<Object> deserializeKeyAndValue(byte[] key, byte[] value) {
         if ( key == null ) {
             return deserialize(value);
         }
